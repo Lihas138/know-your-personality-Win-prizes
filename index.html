@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personality Finder 💗</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  color:white;
+  background:
+    radial-gradient(circle at top left,#ff4fa3 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#702cff 0%,transparent 40%),
+    linear-gradient(135deg,#17002f,#3d075e,#15002c);
+  overflow-x:hidden;
+}
+
+.container{
+  width:100%;
+  max-width:650px;
+  margin:auto;
+  padding:25px 15px 50px;
+}
+
+.card{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-radius:28px;
+  padding:28px 20px;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+
+.hidden{
+  display:none!important;
+}
+
+.logo{
+  font-size:65px;
+  text-align:center;
+  animation:heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.12)}
+}
+
+h1{
+  text-align:center;
+  font-size:32px;
+  margin:10px 0;
+}
+
+.subtitle{
+  text-align:center;
+  opacity:.85;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.prize{
+  text-align:center;
+  background:linear-gradient(
+    135deg,
+    rgba(255,65,160,.35),
+    rgba(120,40,255,.35)
+  );
+  border:1px solid rgba(255,255,255,.25);
+  padding:20px;
+  border-radius:22px;
+  margin:20px 0;
+}
+
+.prize h2{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.money{
+  font-size:42px;
+  font-weight:bold;
+  margin:8px 0;
+}
+
+label{
+  display:block;
+  margin:14px 0 7px;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  border:none;
+  outline:none;
+  border-radius:16px;
+  background:rgba(255,255,255,.14);
+  color:white;
+  border:1px solid rgba(255,255,255,.2);
+  font-size:16px;
+  margin-bottom:5px;
+}
+
+input::placeholder{
+  color:rgba(255,255,255,.65);
+}
+
+button{
+  width:100%;
+  border:none;
+  padding:16px;
+  margin-top:18px;
+  border-radius:18px;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(135deg,#ff3f9f,#8a35ff);
+  box-shadow:0 10px 25px rgba(180,50,255,.3);
+  transition:.2s;
+}
+
+button:hover{
+  transform:translateY(-2px) scale(1.01);
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+.progress{
+  width:100%;
+  height:10px;
+  background:rgba(255,255,255,.15);
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:22px;
+}
+
+.progressBar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ff4fa3,#b55cff);
+  transition:.4s;
+}
+
+.question{
+  font-size:23px;
+  line-height:1.4;
+  margin-bottom:18px;
+}
+
+.option{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);
+  padding:16px;
+  border-radius:17px;
+  margin:10px 0;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.option:hover{
+  background:rgba(255,255,255,.2);
+  transform:translateX(4px);
+}
+
+.option.selected{
+  background:linear-gradient(
+    135deg,
+    rgba(255,63,159,.55),
+    rgba(130,50,255,.55)
+  );
+  border-color:#fff;
+}
+
+.sectionTitle{
+  text-align:center;
+  font-size:27px;
+  margin-bottom:10px;
+}
+
+.sectionText{
+  text-align:center;
+  opacity:.8;
+  margin-bottom:20px;
+}
+
+.resultCard{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:22px;
+  padding:20px;
+  margin:15px 0;
+  text-align:center;
+}
+
+.resultName{
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.percent{
+  font-size:48px;
+  font-weight:bold;
+  background:linear-gradient(90deg,#ff64b5,#b979ff);
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:pop .7s ease;
+}
+
+@keyframes pop{
+  from{
+    transform:scale(.2);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+.personality{
+  font-size:28px;
+  margin:10px 0;
+}
+
+.giftBox{
+  font-size:90px;
+  text-align:center;
+  animation:giftBounce 1s infinite;
+}
+
+@keyframes giftBounce{
+  0%,100%{
+    transform:translateY(0) rotate(0);
+  }
+  50%{
+    transform:translateY(-12px) rotate(4deg);
+  }
+}
+
+.giftTitle{
+  text-align:center;
+  font-size:30px;
+  margin:12px 0;
+}
+
+.giftText{
+  text-align:center;
+  font-size:20px;
+  line-height:1.5;
+}
+
+.wait{
+  margin-top:20px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,.1);
+  text-align:center;
+  line-height:1.6;
+}
+
+.confetti{
+  position:fixed;
+  top:-20px;
+  font-size:25px;
+  animation:fall 4s linear forwards;
+  pointer-events:none;
+  z-index:99;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+    opacity:0;
+  }
+}
+
+@keyframes float{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-20px);
+  }
+}
+
+@media(max-width:500px){
+  .container{
+    padding:15px 10px 35px;
+  }
+
+  .card{
+    padding:22px 15px;
+    border-radius:23px;
+  }
+
+  h1{
+    font-size:27px;
+  }
+
+  .logo{
+    font-size:55px;
+  }
+
+  .question{
+    font-size:20px;
+  }
+
+  .percent{
+    font-size:42px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<script>
+for(let i=0;i<25;i++){
+  const p=document.createElement("div");
+  p.className="particle";
+  p.style.position="fixed";
+  p.style.left=Math.random()*100+"%";
+  p.style.top=Math.random()*100+"%";
+  p.style.width="8px";
+  p.style.height="8px";
+  p.style.borderRadius="50%";
+  p.style.background="#fff";
+  p.style.opacity=".35";
+  p.style.animation="float 7s infinite ease-in-out";
+  p.style.animationDelay=Math.random()*7+"s";
+  p.style.pointerEvents="none";
+  document.body.appendChild(p);
+}
+</script>
+
+<div class="container">
+
+<div class="card" id="introStep">
+
+  <div class="logo">💗</div>
+
+  <h1>Personality Finder</h1>
+
+  <p class="subtitle">
+    Discover your personality, compatibility and mystery gift! ✨
+  </p>
+
+  <div class="prize">
+    <h2>🎁 LUCKY WINNER</h2>
+
+    <div class="money">₹10,000</div>
+
+    <p>
+      Complete the quiz for a chance to become the lucky winner!
+    </p>
+  </div>
+
+  <label>Your Name</label>
+
+  <input
+    id="userName"
+    type="text"
+    placeholder="Enter your name"
+  >
+
+  <label>Your Age</label>
+
+  <input
+    id="userAge"
+    type="number"
+    min="1"
+    max="120"
+    placeholder="Enter your age"
+  >
+
+  <label>Your WhatsApp Number</label>
+
+  <input
+    id="phoneNumber"
+    type="tel"
+    placeholder="Enter your WhatsApp number"
+  >
+
+  <p style="
+    font-size:12px;
+    opacity:.7;
+    line-height:1.5;
+    margin-top:12px;
+    text-align:center;
+  ">
+    Your information will be submitted with your quiz responses
+    for the lucky-winner result.
+  </p>
+
+  <button onclick="startQuiz()">
+    💗 Start Quiz ✨
+  </button>
+
+</div>
+
+
+<div class="card hidden" id="quiz">
+
+  <div class="progress">
+    <div class="progressBar" id="progressBar"></div>
+  </div>
+
+  <div id="questionArea"></div>
+
+</div>
+
+
+<div class="card hidden" id="nameStep">
+
+  <h2 class="sectionTitle">
+    👥
